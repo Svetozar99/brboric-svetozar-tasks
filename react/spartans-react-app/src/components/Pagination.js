@@ -1,6 +1,6 @@
 import React from 'react';
+import './Pagination.css'
 import { useNavigate , useLocation } from 'react-router-dom';
-
 import debounce from 'lodash.debounce';
 
 const Pagination = ({ page, perPage }) => {
@@ -29,15 +29,11 @@ const Pagination = ({ page, perPage }) => {
   };
 
   return (
-    <div>
-      <label>Page:</label>
-      <input type="number" value={page} onChange={handlePageChange} />
-      <label>Per page:</label>
-      <select value={perPage} onChange={handlePerPageChange}>
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="50">50</option>
-      </select>
+    <div className="pagination">
+      <label className="pagination-label">Page:</label>
+      <input className="pagination-input" type="number" value={page} onChange={handlePageChange} />
+      <label className="pagination-label"> Per page:</label>
+      <input className="pagination-input" type="number" value={page} onChange={handlePerPageChange} />
     </div>
   );
 };

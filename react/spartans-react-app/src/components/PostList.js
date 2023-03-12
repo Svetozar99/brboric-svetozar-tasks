@@ -1,26 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './PostList.css';
 
 const PostList = ({ page, perPage }) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
-        params: { _page: page, _limit: perPage }
+      const response = await axios.get('https://reqres.in/api/users', {
+        params: { page: page, per_page: perPage }
       });
-      setPosts(response.data);
+      setPosts(response.data.data);
     };
 
     fetchPosts();
   }, [page, perPage]);
 
   return (
-    <div>
+    <div className="post-container">
       {posts.map(post => (
-        <div key={post.id}>
-          <h2>{post.title}</h2>
-          <p>{post.body}</p>
+        <div className="post" key={post.id}>
+          <h3>{post.id}</h3>
+          <h2>{post.first_name} {post.last_name}</h2>
+          <p>{post.email}</p>
         </div>
       ))}
     </div>
